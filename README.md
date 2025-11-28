@@ -27,17 +27,15 @@ It helps product, design, and engineering collaborate by turning requirements in
 - **Decomposition:** The process of breaking down requirements into small, actionable, and non-overlapping implementation tasks, each documented for clarity and delegation.
 - **Project Overview & Architecture:** High-level documentation that provides essential context about the repository, main components, technologies, and architectural decisions, supporting onboarding and consistent execution.
 - **Workflow Prompts:** Structured automation commands (e.g., `/requirements`, `/decomposition`, `/tasks`) that guide the creation, breakdown, and implementation of features in a repeatable, transparent manner.
-- **Agents:** Specialized AI agents that guide you through different roles in the workflow (Architect, BA, Dev, Team Lead). Agents require preview features to be enabled and provide interactive, context-aware assistance for each workflow step.
-- **Chat Modes:** Alternative guidance system for users without preview features enabled. Chat modes provide the same workflow structure through traditional chat interactions with role-specific instructions.
+- **Agents:** Specialized AI agents that guide you through different roles in the workflow (Architect, BA, Dev, Team Lead). Agents provide interactive, context-aware assistance for each workflow step.
 
 ## Repo layout
 
 This repository contains the framework and templates used to author requirements and guide integration.
 
-- `github-copilot/` - Copilot instructions, prompts, and examples for automation and workflow guidance.
+- `github-copilot/` - Copilot instructions, prompts, and agents for automation and workflow guidance.
   - `copilot-instructions.md` - Main Copilot usage and instruction file.
-  - **`agents/`** - AI agents for specialized workflow roles (Architect, BA, Dev, Team Lead). **Requires preview features enabled.**
-  - **`chatmodes/`** - Chat modes for use when preview features are not available.
+  - **`agents/`** - AI agents for specialized workflow roles (Architect, BA, Dev, Team Lead).
   - `examples/` - Example Copilot instructions.
   - `prompts/` - Prompt templates for architecture, decomposition, project overview, requirements, and tasks.
 - `LICENSE` - Project license.
@@ -57,33 +55,59 @@ This repository contains the framework and templates used to author requirements
 3. Copy the following into the `.github` directory of your target project:
    - The entire [`github-copilot/prompts/`](github-copilot/prompts/) folder
    - The [`github-copilot/copilot-instructions.md`](github-copilot/copilot-instructions.md) file
-   - **The entire [`github-copilot/agents/`](github-copilot/agents/) folder (if using preview features)**
-   - **The entire [`github-copilot/chatmodes/`](github-copilot/chatmodes/) folder (if preview features are not available)**
+   - The entire [`github-copilot/agents/`](github-copilot/agents/) folder
 
-   After this step, your `.github` folder will look like:
-   ```
-   .github/
-   ├── prompts/
-   ├── agents/
-   ├── chatmodes/
-   ├── copilot-instructions.md
-   └── (other existing files)
-   ```
+4. Copy the `.mcp.json` file into the appropriate folder for your editor:
+   - **For VS Code:** Copy to one of the following locations:
+     - `.vscode\mcp.json` - Recommended, keeps VS Code configuration organized
+     - `.mcp.json` - Solution-level configuration (can be tracked in source control)
+   - **For Visual Studio:** Copy to one of the following locations (in order of precedence):
+     - `.vs\mcp.json` - User-specific per solution (automatically created by Visual Studio)
+     - `.mcp.json` - Solution-level configuration (can be tracked in source control)
 
-   After this step, your project root will look like:
+5. After completing the above steps, your project root will look like (depending on your editor):
+   
+   **For VS Code:**
    ```
    your-repo/
    ├── .github/
+   │   ├── prompts/
+   │   ├── agents/
+   │   └── copilot-instructions.md
+   ├── .vscode/
+   │   └── mcp.json
+   ├── .spec-workflow/
+   ├── (other project files)
+   ```
+   
+   **For Visual Studio:**
+   ```
+   your-repo/
+   ├── .github/
+   │   ├── prompts/
+   │   ├── agents/
+   │   └── copilot-instructions.md
+   ├── .vs/
+   │   └── mcp.json
+   ├── .spec-workflow/
+   ├── (other project files)
+   ```
+   
+   **For both editors (shared config):**
+   ```
+   your-repo/
+   ├── .github/
+   │   ├── prompts/
+   │   ├── agents/
+   │   └── copilot-instructions.md
+   ├── .mcp.json
    ├── .spec-workflow/
    ├── (other project files)
    ```
 
-4. Copy the `.mcp.json` file into the root of your workspace:
-   - This file contains configuration for MCP tools and should be placed at the top level of your project directory.
+### AI Agents
 
-### Option 1: AI Agents (Recommended) - Preview Features
-
-**Agents are the recommended approach** for the best experience with Requirements Workflow. Agents require **preview features to be enabled** in VS Code.
+**Agents are the recommended approach** for the best experience with Requirements Workflow.
 
 **Supported Agents:**
 
@@ -94,44 +118,20 @@ This repository contains the framework and templates used to author requirements
 | **Dev Agent** | Implementation | Execute tasks, implement features in the codebase, and ensure code quality |
 | **Team Lead Agent** | Orchestration | Coordinate workflow steps, manage task prioritization, and oversee feature delivery |
 
-**Setup with Preview Features Enabled:**
-1. Enable preview features in VS Code Settings (search "preview features")
-2. Copy the [`github-copilot/agents/`](github-copilot/agents/) folder to your project's `.github/` directory
-3. Use agent mentions (e.g., `@architect agent`, `@ba agent`, `@dev agent`, `@team-lead agent`) to interact with specialized agents
+**Setup:**
+1. Copy the [`github-copilot/agents/`](github-copilot/agents/) folder to your project's `.github/` directory
+2. In VS Code, navigate to the Agents section and select the appropriate agent from the dropdown menu
 
 **Usage:**
-- Open the agent file corresponding to your current workflow step
+- Select the agent corresponding to your current workflow step from the Agents dropdown menu
 - The agent will guide you through the process with specialized knowledge and context
 - Follow the agent's instructions and provide feedback as needed
 
-### Option 2: Chat Modes
-
-If preview features are not available, use chat modes instead. Chat modes provide the same workflow guidance through traditional chat interactions.
-
-**Supported Chat Modes:**
-
-| Chat Mode | Role | Purpose |
-|-----------|------|---------|
-| **Architect Chat Mode** | Architecture & Design | Design software architectures and generate project overviews |
-| **BA Chat Mode** | Business Analysis | Analyze requirements and validate feature scope |
-| **Dev Chat Mode** | Implementation | Guide task implementation and execution |
-| **Team Lead Chat Mode** | Orchestration | Coordinate and manage workflow steps |
-
-**Setup:**
-1. Copy the [`github-copilot/chatmodes/`](github-copilot/chatmodes/) folder to your project's `.github/` directory
-2. Open the corresponding chat mode file (e.g., `architect.chatmode.md`) in the editor
-3. Use the chat mode instructions to guide your workflow
-
-**Usage:**
-- Reference the chat mode file when working on workflow steps
-- Follow the role-specific guidelines and instructions provided in each chat mode
-- Use the structured prompts to maintain consistency
-
 ---
 
-## Execution Flow (recommended)
+## Execution Flow
 
-The following workflow remains consistent whether you use agents or chat modes. Choose your preferred method above and follow these steps:
+The following workflow uses AI agents to guide you through each step:
 
 ### 1. Repository Enrichment: Overview and Architecture
 
@@ -139,9 +139,7 @@ Before implementing features, ensure the repository is enriched with high-level 
 
 To enrich the repository with appropriate documents, perform the following actions:
 
-- **Using Architect Agent (Preview Features):** Set architect agent and request project overview and architecture generation. The agent will guide you through the enrichment process.
-
-- **Using Architect Chat Mode:** Reference `chatmodes/architect.chatmode.md` and follow the instructions to generate project overview and architecture files.
+- **Using Architect Agent:** Set architect agent and request project overview and architecture generation. The agent will guide you through the enrichment process.
 
 - **Alternative - Direct Prompts:** You can also run the workflow prompts directly:
    - For VS Code: `/project-overview {the_path_to_the_project}`  
@@ -164,9 +162,7 @@ All necessary overview and architecture files will be generated automatically by
 
 Start by generating a requirement for the feature you want to implement. Use the requirements prompt to capture the feature intent, acceptance criteria, and any architectural constraints.
 
-- **Using BA Agent (Preview Features):** Set `ba` agent and provide your feature requirements. The agent will guide you through requirement generation and validation.
-
-- **Using BA Chat Mode:** Reference `chatmodes/ba.chatmode.md` for structured guidance on requirement creation.
+- **Using BA Agent:** Set `ba` agent and provide your feature requirements. The agent will guide you through requirement generation and validation.
 
 - **Alternative - Direct Prompts:**
    - **VS Code:** `/requirements {user_requirements}`  
@@ -192,9 +188,7 @@ This process produces clear, testable requirements and design documentation, rea
 
 After generating the requirement and design documentation, break down each functional requirement (FR) into small, executable tasks using the decomposition prompt. This step ensures that implementation work is actionable, traceable, and easy to delegate.
 
-- **Using Team Lead Agent (Preview Features):** Set `team-lead` agent and request decomposition of your feature into tasks. The agent will break down the requirements and generate a task checklist.
-
-- **Using Team Lead Chat Mode:** Reference `chatmodes/team-lead.chatmode.md` for decomposition guidance.
+- **Using Team Lead Agent:** Set `team-lead` agent and request decomposition of your feature into tasks. The agent will break down the requirements and generate a task checklist.
 
 - **Alternative - Direct Prompts:**
    - **VS Code:** `/decomposition {feature} and {fr id}`  
@@ -212,9 +206,7 @@ The agent may use necessary MCP tools to gather context from architecture, overv
 
 Once the tasks are documented and approved, proceed to implement each task by running the tasks prompt. The agent may call any necessary tools to perform the task. This step ensures that each actionable item is executed and tracked.
 
-- **Using Dev Agent (Preview Features):** Set `dev` agent and provide the feature and FR IDs. The agent will implement each task step-by-step, build the solution, and track progress in the checklist.
-
-- **Using Dev Chat Mode:** Reference `chatmodes/dev.chatmode.md` for implementation guidance.
+- **Using Dev Agent:** Set `dev` agent and provide the feature and FR IDs. The agent will implement each task step-by-step, build the solution, and track progress in the checklist.
 
 - **Alternative - Direct Prompts:**
    - **VS Code:** `/tasks {feature} and {fr id}`  
@@ -226,16 +218,15 @@ The agent will guide you through the implementation of each task, updating the c
 
 ---
 
-## Quick Reference: Choosing Your Approach
+## Quick Reference
 
 | Scenario | Recommended Approach | Setup Required |
 |----------|----------------------|-----------------|
-| Preview features enabled | Use AI Agents (Option 1) | Copy `agents/` folder to `.github/` |
-| Preview features not available | Use Chat Modes (Option 2) | Copy `chatmodes/` folder to `.github/` |
-| Using Visual Studio | Use Direct Prompts | Reference `copilot-instructions.md` |
-| Want both options available | Copy both `agents/` and `chatmodes/` | All folders included in `.github/` |
+| Using AI Agents (VS Code) | Select agent from Agents dropdown menu | Copy `agents/` folder to `.github/` |
+| Using Direct Prompts | Run `/requirements`, `/decomposition`, `/tasks` directly | Copy `prompts/` folder to `.github/` |
+| Using Visual Studio | Use `#requirement`, `#decomposition`, `#tasks` syntax | Copy `prompts/` folder to `.github/` |
 
-**Note:** The core workflow (Requirements → Decomposition → Tasks) remains the same regardless of which approach you choose. Agents and chat modes provide different interfaces to guide you through the same process.
+**Note:** Agents and direct prompts provide different interfaces to guide you through the same workflow process. Choose whichever best fits your workflow preferences.
 
 ---
 
