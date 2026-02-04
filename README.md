@@ -227,7 +227,8 @@ The dev-manager agent will orchestrate the implementation process, delegating wo
 ## Quick Reference
 
 | Scenario | Recommended Approach | Setup Required |
-|----------|----------------------|-----------------|| **Learning the Workflow** | **[Watch video tutorial](https://youtu.be/YLlYrbkTpJ4)** | **None** || Using AI Agents (VS Code) | Select agent from Agents dropdown menu | Copy `agents/` folder to `.github/` |
+|----------|----------------------|-----------------|
+| **Learning the Workflow** | **[Watch video tutorial](https://youtu.be/YLlYrbkTpJ4)** | **None** || Using AI Agents (VS Code) | Select agent from Agents dropdown menu | Copy `agents/` folder to `.github/` |
 | Using Direct Prompts | Run `/requirements`, `/decomposition`, `/tasks` directly | Copy `prompts/` folder to `.github/` |
 | Using Visual Studio | Use `#requirement`, `#decomposition`, `#tasks` syntax | Copy `prompts/` folder to `.github/` |
 
