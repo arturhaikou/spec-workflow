@@ -1,44 +1,31 @@
 <task_file_template>
-# {FEATURE_NAME}
+# Task [XXX]:[Task Name]
 
-## Goal
-{One sentence describing exactly what this implementation accomplishes}
+> **Applied Skill:** [Name of skill file] - [Brief note on what rule is being enforced]
 
-### Step-by-Step Instructions
+## 1. Objective
+[1-2 sentences explaining what this task achieves.]
 
-#### Step 1: {Action}
-- [ ] {Specific instruction 1}
-- [ ] Copy and paste code below into `{file}`:
+## 2. File to Modify / Create
+* **File Path:** `[Exact path from codebase root]`
+* **Action:**[Create New File | Modify Existing File]
 
-```{language}
-{COMPLETE, TESTED CODE - NO PLACEHOLDERS - NO "TODO" COMMENTS}
+## 3. Code Implementation
+**Imports Required:**
+```[language][Exact import statements to add at the top of the file]
 ```
 
-- [ ] {Specific instruction 2}
-- [ ] Copy and paste code below into `{file}`:
-
-```{language}
-{COMPLETE, TESTED CODE - NO PLACEHOLDERS - NO "TODO" COMMENTS}
+**Code to Add/Replace:**
+* **Location:**[E.g., "Inside the `ValidateOrder` method, right after the null check"]
+* **Snippet:**
+```[language]
+[Exact, copy-paste ready code]
 ```
 
-
-#### Step 2: {Action}
-- [ ] {Specific Instruction 1}
-- [ ] Copy and paste code below into `{file}`:
-
-```{language}
-{COMPLETE, TESTED CODE - NO PLACEHOLDERS - NO "TODO" COMMENTS}
+## 4. Validation Steps
+Execute the following commands to ensure this task was successful. Do NOT run the full application server.
+```bash[e.g., dotnet build]
+[e.g., dotnet test path/to/specific/test.cs]
 ```
-
-#### Step N: {Action}
-- [ ] {Specific Instruction 1}
-- [ ] Copy and paste code below into `{file}`:
-
-```{language}
-{COMPLETE, TESTED CODE - NO PLACEHOLDERS - NO "TODO" COMMENTS}
-```
-
-#### Verification Checklist(Only build solution without testing)
-- [ ] No build errors
 
 </task_file_template>

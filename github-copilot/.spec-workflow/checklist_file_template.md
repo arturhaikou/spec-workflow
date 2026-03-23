@@ -1,12 +1,9 @@
 <checklist_file_template>
-```markdown
-# Checklist for FEAT-20251001-001:FR-001 — <One-line requirement title>
+# Implementation Checklist: [FR Title]
 
-| Task # | Title                                 | Status       |
-|--------|---------------------------------------|--------------|
-| 001    | Scaffold a new project                | not started  |
+- [ ] `task-001-[name].md`
+- [ ] `task-002-[name].md`
+- [ ] `task-003-[name].md`
 
-## Next Task for Implementation
-- Task 001: Scaffold a new project
-````
+**Next Task:** `task-001-[name].md`
 </checklist_file_template>
