@@ -133,4 +133,12 @@ Open an issue describing what you'd like to add or improve.
 
 ## License
 
-See `LICENSE`.
+This project is licensed under the terms in the `LICENSE` file.
+
+## Contact / Questions
+
+If you have questions about the workflow, open an issue or reach out to the maintainer.
+
+---
+
+Happy requirementing!
